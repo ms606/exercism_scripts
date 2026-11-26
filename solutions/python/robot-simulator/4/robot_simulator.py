@@ -1,0 +1,34 @@
+"""robot_simulator python code"""
+NORTH = 0
+EAST = 1
+SOUTH = 2
+WEST = 3
+
+
+class Robot:
+    """Robot class"""
+    def __init__(self, direction=NORTH, x_pos=0, y_pos=0):
+        """Initialization"""
+        self.direction = direction
+        self.coordinates = (x_pos, y_pos)
+
+    def move(self, instruction: str):
+        """Function that will help in Move"""
+        x_axis, y_axis = self.coordinates  
+        
+        for command in instruction:
+            if command == 'R':
+                self.direction = (self.direction + 1) % 4
+            elif command == 'L':
+                self.direction = (self.direction - 1) % 4   
+            elif command == 'A':
+                if self.direction == NORTH:
+                    y_axis += 1
+                elif self.direction == EAST:
+                    x_axis += 1
+                elif self.direction == SOUTH:
+                    y_axis -= 1
+                elif self.direction == WEST:
+                    x_axis -= 1 
+                
+        self.coordinates = (x_axis, y_axis)
